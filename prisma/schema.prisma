@@ -1,0 +1,115 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ServiceState {
+  MA
+  NH
+  RI
+  VT
+}
+
+enum Gender {
+  Male
+  Female
+  Other
+}
+
+enum PaymentStatus {
+  pending
+  paid
+  refunded
+  failed
+}
+
+model Member {
+  id                            String        @id @default(cuid())
+  firstName                     String
+  lastName                      String
+  primaryPhone                  String
+  email                         String        @unique
+  gender                        Gender
+  state                         ServiceState
+  joinedAt                      DateTime      @default(now())
+  convenerAssigned              String?
+  emergencyContactName          String
+  emergencyContactPhone         String
+  emergencyContactRelationship  String
+  insuranceProvider             String?
+  insurancePolicyNumber         String?
+  rsvps                         ClassRsvp[]
+  orders                        Order[]
+
+  @@map("members")
+}
+
+model WellnessClass {
+  id          String         @id @default(cuid())
+  name        String
+  slug        String         @unique
+  origin      String
+  description String
+  benefits    String[]
+  imageUrl    String?
+  sessions    ClassSession[]
+
+  @@map("wellness_classes")
+}
+
+model ClassSession {
+  id          String        @id @default(cuid())
+  classId     String
+  dayOfWeek   String
+  time        String
+  location    String
+  state       ServiceState
+  class       WellnessClass @relation(fields: [classId], references: [id], onDelete: Cascade)
+  rsvps       ClassRsvp[]
+
+  @@map("class_sessions")
+}
+
+model ClassRsvp {
+  id        String       @id @default(cuid())
+  memberId  String
+  sessionId String
+  createdAt DateTime     @default(now())
+  member    Member       @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  session   ClassSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@unique([memberId, sessionId])
+  @@map("class_rsvps")
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  productName String
+  skuId       String   @unique
+  price       Float
+  description String?
+  imageUrl    String?
+  inStock     Boolean  @default(true)
+  orders      Order[]
+
+  @@map("products")
+}
+
+model Order {
+  id                    String        @id @default(cuid())
+  orderDate             DateTime      @default(now())
+  memberId              String
+  productId             String
+  quantity              Int           @default(1)
+  paymentStatus         PaymentStatus @default(pending)
+  stripePaymentIntentId String?
+  member                Member        @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  product               Product       @relation(fields: [productId], references: [id])
+
+  @@map("orders")
+}
