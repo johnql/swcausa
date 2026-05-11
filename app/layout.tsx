@@ -10,9 +10,25 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "SWCA — Senior Women's Christian Association",
+  title: {
+    default: "SWCA — Senior Women's Christian Association",
+    template: "%s | SWCA",
+  },
   description:
     "A Community of Care, Wellness, and Friendship serving senior women across Massachusetts, New Hampshire, Rhode Island, and Vermont.",
+  metadataBase: new URL("https://swcausa.org"),
+  openGraph: {
+    siteName: "Senior Women's Christian Association",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

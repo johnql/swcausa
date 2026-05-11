@@ -7,7 +7,9 @@ import LogoutButton from "@/components/LogoutButton";
 const navLinks = [
   { href: "/about", label: "About Us" },
   { href: "/classes", label: "Wellness Classes" },
+  { href: "/events", label: "Schedule" },
   { href: "/store", label: "Store" },
+  { href: "/donate", label: "Donate" },
   { href: "/contact", label: "Contact" },
 ];
 
