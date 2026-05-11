@@ -1,23 +1,43 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import type { WellnessClass } from "@/types";
 
 export default function WellnessClassCard({ cls }: { cls: WellnessClass }) {
   return (
-    <Card className="h-full flex flex-col">
-      <div className="h-48 bg-teal-50 rounded-t-lg" />
-      <CardHeader>
-        <CardTitle className="text-lg">{cls.name}</CardTitle>
-        <p className="text-xs text-gray-500 italic">{cls.origin}</p>
-      </CardHeader>
-      <CardContent className="flex-1 flex flex-col gap-3">
-        <p className="text-sm text-gray-700">{cls.description}</p>
-        <div className="flex flex-wrap gap-1 mt-auto">
+    <div className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow flex flex-col">
+      {/* Image */}
+      <div className="relative h-52 overflow-hidden bg-teal-50">
+        {cls.imageUrl ? (
+          <Image
+            src={cls.imageUrl}
+            alt={cls.name}
+            fill
+            className="object-cover object-center"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+        ) : (
+          <div className="flex h-full items-center justify-center">
+            <span className="text-6xl text-teal-200">🌿</span>
+          </div>
+        )}
+        {/* Origin badge overlay */}
+        <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/50 to-transparent px-4 py-3">
+          <p className="text-xs text-white/80 italic">{cls.origin}</p>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="p-5 flex flex-col flex-1 gap-3">
+        <h3 className="text-lg font-semibold text-gray-900">{cls.name}</h3>
+        <p className="text-sm text-gray-600 leading-relaxed flex-1">{cls.description}</p>
+        <div className="flex flex-wrap gap-1.5 pt-1">
           {cls.benefits.map((b) => (
-            <Badge key={b} variant="secondary" className="text-xs">{b}</Badge>
+            <Badge key={b} variant="secondary" className="text-xs bg-teal-50 text-teal-700 border-0">
+              {b}
+            </Badge>
           ))}
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }

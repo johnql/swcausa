@@ -127,6 +127,7 @@ async function main() {
       description: "Comfortable cotton T-shirt featuring the SWCA logo. Available in sizes S–3XL.",
       price: 25.0,
       inStock: true,
+      imageUrl: "/imgs/TShirts.png",
     },
     {
       skuId: "swca-bottle-001",
