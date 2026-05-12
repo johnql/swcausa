@@ -32,14 +32,24 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "An account with this email already exists." }, { status: 409 });
   }
 
-  const member = await db.member.create({ data });
+  let member;
+  try {
+    member = await db.member.create({ data });
+  } catch {
+    return NextResponse.json({ error: "Registration failed. Please try again." }, { status: 500 });
+  }
 
-  await resend.emails.send({
-    from: "SWCA <no-reply@swcausa.org>",
-    to: [member.email],
-    subject: "Welcome to SWCA!",
-    text: `Hi ${member.firstName},\n\nWelcome to the Senior Women's Christian Association! A local convener from your neighborhood will be in touch soon.\n\nWith care,\nThe SWCA Team`,
-  });
+  // Email failure should not roll back a successful registration
+  try {
+    await resend.emails.send({
+      from: "SWCA <no-reply@swcausa.org>",
+      to: [member.email],
+      subject: "Welcome to SWCA!",
+      text: `Hi ${member.firstName},\n\nWelcome to the Senior Women's Christian Association! A local convener from your neighborhood will be in touch soon.\n\nWith care,\nThe SWCA Team`,
+    });
+  } catch {
+    // non-fatal — member record already created
+  }
 
   return NextResponse.json({ ok: true, id: member.id }, { status: 201 });
 }

@@ -19,6 +19,7 @@ vi.mock("@/lib/resend", () => ({
 }));
 
 import { db } from "@/lib/db";
+import { resend } from "@/lib/resend";
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 const validPayload = {
@@ -107,6 +108,76 @@ describe("POST /api/members", () => {
 
     const withInsurance = { ...validPayload, insuranceProvider: "BlueCross", insurancePolicyNumber: "BC123" };
     const res = await POST(makeRequest(withInsurance));
+    expect(res.status).toBe(201);
+  });
+
+  it("returns 400 when firstName is an empty string", async () => {
+    const res = await POST(makeRequest({ ...validPayload, firstName: "" }));
+    expect(res.status).toBe(400);
+  });
+
+  it("returns 400 when lastName is an empty string", async () => {
+    const res = await POST(makeRequest({ ...validPayload, lastName: "" }));
+    expect(res.status).toBe(400);
+  });
+
+  it("returns 400 when emergencyContactName is an empty string", async () => {
+    const res = await POST(makeRequest({ ...validPayload, emergencyContactName: "" }));
+    expect(res.status).toBe(400);
+  });
+
+  it("sends welcome email to the new member after creation", async () => {
+    vi.mocked(db.member.findUnique).mockResolvedValue(null);
+    vi.mocked(db.member.create).mockResolvedValue({
+      id: "new-id",
+      ...validPayload,
+      joinedAt: new Date(),
+    } as never);
+
+    await POST(makeRequest(validPayload));
+
+    expect(resend.emails.send).toHaveBeenCalledWith(
+      expect.objectContaining({
+        to: [validPayload.email],
+        subject: "Welcome to SWCA!",
+      })
+    );
+  });
+
+  it("welcome email is personalized with the member's first name", async () => {
+    vi.mocked(db.member.findUnique).mockResolvedValue(null);
+    vi.mocked(db.member.create).mockResolvedValue({
+      id: "new-id",
+      ...validPayload,
+      joinedAt: new Date(),
+    } as never);
+
+    await POST(makeRequest(validPayload));
+
+    const call = vi.mocked(resend.emails.send).mock.calls[0][0] as { text: string };
+    expect(call.text).toContain(validPayload.firstName);
+  });
+
+  it("returns 500 if db.member.create throws", async () => {
+    vi.mocked(db.member.findUnique).mockResolvedValue(null);
+    vi.mocked(db.member.create).mockRejectedValue(new Error("DB connection lost"));
+
+    const res = await POST(makeRequest(validPayload));
+    expect(res.status).toBe(500);
+    const json = await res.json();
+    expect(json.error).toMatch(/registration failed/i);
+  });
+
+  it("still returns 201 if welcome email send fails after creation", async () => {
+    vi.mocked(db.member.findUnique).mockResolvedValue(null);
+    vi.mocked(db.member.create).mockResolvedValue({
+      id: "new-id",
+      ...validPayload,
+      joinedAt: new Date(),
+    } as never);
+    vi.mocked(resend.emails.send).mockRejectedValue(new Error("SMTP timeout"));
+
+    const res = await POST(makeRequest(validPayload));
     expect(res.status).toBe(201);
   });
 });

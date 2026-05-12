@@ -15,37 +15,41 @@ export async function POST(request: NextRequest) {
 
   const { email } = result.data;
 
-  await Promise.all([
-    // Welcome email to subscriber
-    resend.emails.send({
-      from: "SWCA <hello@swcausa.org>",
-      to: email,
-      subject: "You're subscribed to SWCA updates!",
-      html: `
-        <div style="font-family:sans-serif;max-width:520px;margin:0 auto;padding:24px">
-          <h2 style="color:#0f766e">Welcome to the SWCA Community!</h2>
-          <p>Thank you for subscribing to our newsletter. You'll be the first to hear about:</p>
-          <ul>
-            <li>New wellness classes and schedules</li>
-            <li>Community events and gatherings</li>
-            <li>SWCA news and updates</li>
-          </ul>
-          <p>We're so glad you're part of our family.</p>
-          <p style="color:#6b7280;font-size:13px">
-            If you didn't subscribe, you can ignore this email.
-            <br>Senior Women's Christian Association · Serving MA · NH · RI · VT
-          </p>
-        </div>
-      `,
-    }),
-    // Admin notification
-    resend.emails.send({
-      from: "SWCA Site <hello@swcausa.org>",
-      to: "admin@swcausa.org",
-      subject: "New Newsletter Subscriber",
-      html: `<p>New subscriber: <strong>${email}</strong></p>`,
-    }),
-  ]);
+  try {
+    await Promise.all([
+      // Welcome email to subscriber
+      resend.emails.send({
+        from: "SWCA <hello@swcausa.org>",
+        to: email,
+        subject: "You're subscribed to SWCA updates!",
+        html: `
+          <div style="font-family:sans-serif;max-width:520px;margin:0 auto;padding:24px">
+            <h2 style="color:#0f766e">Welcome to the SWCA Community!</h2>
+            <p>Thank you for subscribing to our newsletter. You'll be the first to hear about:</p>
+            <ul>
+              <li>New wellness classes and schedules</li>
+              <li>Community events and gatherings</li>
+              <li>SWCA news and updates</li>
+            </ul>
+            <p>We're so glad you're part of our family.</p>
+            <p style="color:#6b7280;font-size:13px">
+              If you didn't subscribe, you can ignore this email.
+              <br>Senior Women's Christian Association · Serving MA · NH · RI · VT
+            </p>
+          </div>
+        `,
+      }),
+      // Admin notification
+      resend.emails.send({
+        from: "SWCA Site <hello@swcausa.org>",
+        to: "admin@swcausa.org",
+        subject: "New Newsletter Subscriber",
+        html: `<p>New subscriber: <strong>${email}</strong></p>`,
+      }),
+    ]);
+  } catch {
+    return NextResponse.json({ error: "Failed to send confirmation email. Please try again." }, { status: 500 });
+  }
 
   return NextResponse.json({ success: true });
 }

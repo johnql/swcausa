@@ -54,4 +54,37 @@ describe("POST /api/newsletter", () => {
     const adminEmail = calls.find((c) => (c[0] as { to: string }).to === "admin@swcausa.org");
     expect(adminEmail).toBeDefined();
   });
+
+  it("welcome email uses the correct sender address", async () => {
+    await POST(makeRequest({ email: "member@example.com" }));
+    expect(resend.emails.send).toHaveBeenCalledWith(
+      expect.objectContaining({ from: "SWCA <hello@swcausa.org>", to: "member@example.com" })
+    );
+  });
+
+  it("welcome email has the correct subject line", async () => {
+    await POST(makeRequest({ email: "member@example.com" }));
+    expect(resend.emails.send).toHaveBeenCalledWith(
+      expect.objectContaining({
+        to: "member@example.com",
+        subject: "You're subscribed to SWCA updates!",
+      })
+    );
+  });
+
+  it("admin notification email includes the subscriber's address in the body", async () => {
+    await POST(makeRequest({ email: "special@example.com" }));
+    const calls = vi.mocked(resend.emails.send).mock.calls;
+    const adminCall = calls.find((c) => (c[0] as { to: string }).to === "admin@swcausa.org");
+    const body = (adminCall![0] as { html: string }).html;
+    expect(body).toContain("special@example.com");
+  });
+
+  it("returns 500 if email sending fails", async () => {
+    vi.mocked(resend.emails.send).mockRejectedValue(new Error("SMTP error"));
+    const res = await POST(makeRequest({ email: "member@example.com" }));
+    expect(res.status).toBe(500);
+    const json = await res.json();
+    expect(json.error).toMatch(/failed to send/i);
+  });
 });
