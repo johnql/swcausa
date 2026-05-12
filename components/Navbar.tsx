@@ -31,6 +31,7 @@ export default async function Navbar() {
             className="h-12 w-auto object-contain"
             priority
           />
+          <span className="font-bold text-lg text-teal-800 leading-tight hidden sm:block">SWCA</span>
         </Link>
 
         {/* Desktop nav links */}

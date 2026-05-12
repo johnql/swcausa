@@ -45,13 +45,7 @@ export default function HomePage() {
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
           <div>
-            <Image
-              src="/imgs/SWCAlogoO.png"
-              alt="SWCA"
-              width={200}
-              height={80}
-              className="mb-8 h-20 w-auto object-contain"
-            />
+
             <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">
               A Community of Care,<br />Wellness &amp; Friendship
             </h1>
@@ -69,7 +63,7 @@ export default function HomePage() {
               </Link>
               <Link
                 href="/classes"
-                className={cn(buttonVariants({ size: "lg", variant: "outline" }), "border-white text-white hover:bg-white/10")}
+                className={cn(buttonVariants({ size: "lg" }), "bg-white text-teal-800 hover:bg-teal-50 font-semibold")}
               >
                 Explore Wellness Classes
               </Link>
