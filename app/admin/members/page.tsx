@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { db } from "@/lib/db";
 import DashboardLayout from "@/components/DashboardLayout";
 import { Badge } from "@/components/ui/badge";
+import MemberRoleToggle from "@/components/MemberRoleToggle";
 import { serviceStates } from "@/data/states";
 
 export const metadata: Metadata = { title: "Members | Admin | SWCA" };
@@ -29,7 +30,7 @@ export default async function AdminMembersPage() {
           <table className="w-full text-sm">
             <thead className="bg-gray-50 text-left">
               <tr>
-                {["Name", "Email", "Phone", "State", "Emergency Contact", "Joined"].map((h) => (
+                {["Name", "Email", "Phone", "State", "Roles", "Emergency Contact", "Joined"].map((h) => (
                   <th key={h} className="px-4 py-3 font-medium text-gray-600">{h}</th>
                 ))}
               </tr>
@@ -40,9 +41,22 @@ export default async function AdminMembersPage() {
                   <td className="px-4 py-3 font-medium">{m.firstName} {m.lastName}</td>
                   <td className="px-4 py-3 text-gray-600">{m.email}</td>
                   <td className="px-4 py-3 text-gray-600">{m.primaryPhone}</td>
-                  <td className="px-4 py-3"><Badge variant="secondary">{stateLabelMap[m.state] ?? m.state}</Badge></td>
-                  <td className="px-4 py-3 text-gray-600">{m.emergencyContactName} · {m.emergencyContactPhone}</td>
-                  <td className="px-4 py-3 text-gray-500">{new Date(m.joinedAt).toLocaleDateString()}</td>
+                  <td className="px-4 py-3">
+                    <Badge variant="secondary">{stateLabelMap[m.state] ?? m.state}</Badge>
+                  </td>
+                  <td className="px-4 py-3">
+                    <MemberRoleToggle
+                      memberId={m.id}
+                      isAdmin={m.isAdmin}
+                      isConvener={m.isConvener}
+                    />
+                  </td>
+                  <td className="px-4 py-3 text-gray-600">
+                    {m.emergencyContactName} · {m.emergencyContactPhone}
+                  </td>
+                  <td className="px-4 py-3 text-gray-500">
+                    {new Date(m.joinedAt).toLocaleDateString()}
+                  </td>
                 </tr>
               ))}
             </tbody>
