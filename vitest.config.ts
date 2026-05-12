@@ -7,6 +7,7 @@ export default defineConfig({
   test: {
     globals: true,
     setupFiles: ["./tests/setup.ts"],
+    // @ts-ignore — valid vitest option, types lag behind
     environmentMatchGlobs: [
       ["tests/components/**", "jsdom"],
       ["tests/api/**", "node"],

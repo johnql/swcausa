@@ -19,6 +19,9 @@ export default async function AdminOrdersPage() {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/login");
 
+  const self = await db.member.findUnique({ where: { email: user.email! } });
+  if (!self?.isAdmin) redirect("/");
+
   const orders = await db.order.findMany({
     include: { member: true, product: true },
     orderBy: { orderDate: "desc" },

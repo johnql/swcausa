@@ -13,6 +13,9 @@ export default async function AdminMembersPage() {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/login");
 
+  const self = await db.member.findUnique({ where: { email: user.email! } });
+  if (!self?.isAdmin) redirect("/");
+
   const members = await db.member.findMany({ orderBy: { joinedAt: "desc" } });
   const stateLabelMap = Object.fromEntries(serviceStates.map((s) => [s.value, s.label]));
 

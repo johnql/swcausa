@@ -15,6 +15,7 @@ export default async function ConvenerPage() {
 
   const convener = await db.member.findUnique({ where: { email: user.email! } });
   if (!convener) redirect("/join");
+  if (!convener.isConvener && !convener.isAdmin) redirect("/");
 
   const assignedMembers = await db.member.findMany({
     where: { convenerAssigned: user.email, state: convener.state },

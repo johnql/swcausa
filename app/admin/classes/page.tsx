@@ -12,6 +12,9 @@ export default async function AdminClassesPage() {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/login");
 
+  const self = await db.member.findUnique({ where: { email: user.email! } });
+  if (!self?.isAdmin) redirect("/");
+
   const classes = await db.wellnessClass.findMany({
     include: { sessions: true },
     orderBy: { name: "asc" },

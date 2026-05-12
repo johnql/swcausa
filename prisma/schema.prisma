@@ -37,6 +37,8 @@ model Member {
   state                         ServiceState
   joinedAt                      DateTime      @default(now())
   convenerAssigned              String?
+  isConvener                    Boolean       @default(false)
+  isAdmin                       Boolean       @default(false)
   emergencyContactName          String
   emergencyContactPhone         String
   emergencyContactRelationship  String

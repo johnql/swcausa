@@ -13,6 +13,9 @@ export default async function AdminPage() {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/login");
 
+  const self = await db.member.findUnique({ where: { email: user.email! } });
+  if (!self?.isAdmin) redirect("/");
+
   const [memberCount, classCount, orderCount] = await Promise.all([
     db.member.count(),
     db.wellnessClass.count(),
