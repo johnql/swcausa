@@ -51,8 +51,8 @@ export default function ContactPage() {
               {
                 icon: "/imgs/phone.jpg",
                 label: "Phone",
-                value: "(617) 555-0100",
-                href: "tel:+16175550100",
+                value: "(416) 830-0685",
+                href: "tel:+14168300685",
               },
               {
                 icon: "/imgs/address.jpg",

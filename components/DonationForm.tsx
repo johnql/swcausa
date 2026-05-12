@@ -85,7 +85,7 @@ export default function DonationForm() {
 
       <button
         onClick={handleDonate}
-        disabled={loading || !amount || amount < 1}
+        disabled={loading || amount === null}
         className={cn(buttonVariants({ variant: "default" }), "w-full")}
       >
         {loading ? "Redirecting to payment…" : `Donate${amount && amount > 0 ? ` $${amount.toFixed(2)}` : ""}`}

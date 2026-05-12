@@ -149,7 +149,7 @@ export default function AboutPage() {
           </div>
           <div className="relative h-64 rounded-2xl overflow-hidden shadow-md">
             <Image
-              src="/imgs/Advisors.png"
+              src="/imgs/contactus.png"
               alt="SWCA Advisors"
               fill
               className="object-cover object-center"
