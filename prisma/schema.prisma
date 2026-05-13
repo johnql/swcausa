@@ -33,6 +33,7 @@ model Member {
   lastName                      String
   primaryPhone                  String
   email                         String        @unique
+  password                      String?
   gender                        Gender
   state                         ServiceState
   joinedAt                      DateTime      @default(now())

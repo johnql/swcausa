@@ -39,7 +39,7 @@ export default async function AdminMembersPage() {
           <table className="w-full text-sm">
             <thead className="bg-gray-50 text-left">
               <tr>
-                {["Name", "Email", "State", "Roles", "Assigned Convener", "Emergency Contact", "Joined"].map((h) => (
+                {["Name", "Email", "Password", "State", "Roles", "Assigned Convener", "Emergency Contact", "Joined"].map((h) => (
                   <th key={h} className="px-4 py-3 font-medium text-gray-600">{h}</th>
                 ))}
               </tr>
@@ -49,6 +49,9 @@ export default async function AdminMembersPage() {
                 <tr key={m.id} className="hover:bg-gray-50">
                   <td className="px-4 py-3 font-medium whitespace-nowrap">{m.firstName} {m.lastName}</td>
                   <td className="px-4 py-3 text-gray-600">{m.email}</td>
+                  <td className="px-4 py-3 text-gray-600 font-mono text-xs">
+                    {m.password ?? <span className="text-gray-400 italic">—</span>}
+                  </td>
                   <td className="px-4 py-3">
                     <Badge variant="secondary">{stateLabelMap[m.state] ?? m.state}</Badge>
                   </td>

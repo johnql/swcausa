@@ -7,6 +7,7 @@ const schema = z.object({
   firstName: z.string().min(1),
   lastName: z.string().min(1),
   email: z.string().email(),
+  password: z.string().min(8),
   primaryPhone: z.string().min(1),
   gender: z.enum(["Male", "Female", "Other"]),
   state: z.enum(["MA", "NH", "RI", "VT"]),
