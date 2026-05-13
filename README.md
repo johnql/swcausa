@@ -252,3 +252,110 @@ tests/            Vitest test suite
 - Use **test mode** Stripe keys during development (`pk_test_`, `sk_test_`)
 - Switch to **live mode** keys in Vercel production environment variables only
 - The Stripe webhook secret differs between test and live mode — update accordingly
+
+
+## Notes:  the normal pattern for a modern app: Workflow: Deploying code with Vercel + Supabase
+
+
+Vercel deploys your Next.js frontend and any Next.js server-side code
+Supabase hosts your database, auth, storage, and optional backend functions
+They deploy separately, but work together.
+
+Step 1: Prepare your repo
+    Keep secrets out of Git
+    use .env.example as a template
+    exclude .env.local/.env
+    Commit your code to GitHub
+        git add .
+        git commit -m "ready for deployment"
+        git push origin main
+Step 2: Set up Supabase
+    Create a Supabase project
+    In Supabase dashboard → Settings → API
+    copy SUPABASE_URL
+    copy anon key
+    copy service_role key
+    Add your DB connection string
+    DATABASE_URL=postgresql://...
+    If using database migrations
+    Run locally:
+        npx prisma migrate dev
+    Prepare migration files
+    Deploy migrations in production:
+        npx prisma migrate deploy
+    or use Supabase CLI / GitHub Action
+    If using Supabase Edge Functions
+        Write functions in supabase/functions/...
+        Deploy them separately with Supabase CLI:
+            supabase functions deploy <name>
+Step 3: Set up Vercel
+    Create a Vercel account
+    Import your GitHub repo
+    Confirm the project framework is Next.js
+    Set environment variables in Vercel
+    NEXT_PUBLIC_SUPABASE_URL
+    NEXT_PUBLIC_SUPABASE_ANON_KEY
+    SUPABASE_SERVICE_ROLE_KEY
+    DATABASE_URL
+    STRIPE_SECRET_KEY
+    NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+    STRIPE_WEBHOOK_SECRET
+    RESEND_API_KEY
+    NEXT_PUBLIC_SITE_URL=https://swcausa.org
+Step 4: Local development workflow
+    Run the app locally:
+        npm install
+        npm run dev
+    Use local env values in .env.local
+    Test the app fully:
+    Supabase auth / database
+    Stripe checkout and webhooks
+    Resend email flows
+    Commit changes to a feature branch
+    Open a PR and review before merging
+Step 5: Deploying to production
+    Frontend deployment (Vercel)
+    Push code to main
+    Vercel auto-deploys from GitHub
+    Build runs:
+        npm run build
+    Vercel serves the live frontend
+    Backend deployment (Supabase)
+    If you use database or edge functions:
+
+    Deploy migrations:
+        npx prisma migrate deploy
+    Deploy edge functions:
+        supabase functions deploy <name>
+    Update Supabase settings if needed
+Step 6: Domain and live site
+    Add swcausa.org in Vercel domains
+    Configure DNS at your registrar
+    Verify Vercel domain setup
+    Use HTTPS
+    Make sure NEXT_PUBLIC_SITE_URL is https://swcausa.org
+Step 7: Production verification
+    After deploy:
+
+    Visit https://swcausa.org
+    Confirm pages load
+    Test Supabase-backed features
+    Confirm Stripe webhook route works
+    Confirm emails send through Resend
+    Check logs in both Vercel and Supabase
+Step 8: Ongoing deployment workflow
+    Use this cycle:
+
+    Develop locally
+    Commit to feature branch
+    Open PR
+    Review + test
+    Merge to main
+    Vercel deploys frontend
+    Deploy Supabase backend changes if needed   
+
+Important note
+Vercel and Supabase are independent platforms
+Vercel deploys app code
+Supabase deploys backend services
+That means you often deploy both, but separately
