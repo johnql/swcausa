@@ -157,8 +157,8 @@ export default function HomePage() {
                   <div className="absolute inset-0 bg-teal-900/30" />
                 </div>
                 <div className="p-5">
-                  <h3 className="font-semibold text-gray-900 mb-2">{p.title}</h3>
-                  <p className="text-sm text-gray-600">{p.description}</p>
+                  <h3 className="font-semibold text-gray-900 text-lg mb-2">{p.title}</h3>
+                  <p className="text-base text-gray-600 leading-relaxed">{p.description}</p>
                 </div>
               </div>
             ))}
