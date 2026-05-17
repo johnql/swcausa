@@ -35,7 +35,7 @@ export default function AboutPage() {
 
         {/* ── Mission ───────────────────────────────────────────────────── */}
         <div className="bg-teal-50 rounded-2xl p-8 mb-16 text-center max-w-3xl mx-auto">
-          <span className="text-teal-600 font-semibold text-sm uppercase tracking-wider">Our Mission</span>
+          <span className="text-teal-600 font-semibold text-base uppercase tracking-wider">Our Mission</span>
           <blockquote className="mt-4 text-xl text-gray-700 italic leading-relaxed">
             &ldquo;Inspired by the legacy of the YWCA, the Senior Women&apos;s Christian Association
             was established to serve the unique needs of senior women — fostering a compassionate
@@ -46,7 +46,7 @@ export default function AboutPage() {
         {/* ── Who We Serve ──────────────────────────────────────────────── */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
           <div>
-            <span className="text-teal-600 font-semibold text-sm uppercase tracking-wider">Who We Serve</span>
+            <span className="text-teal-600 font-semibold text-base uppercase tracking-wider">Who We Serve</span>
             <h2 className="text-2xl font-bold text-gray-900 mt-2 mb-4">Senior Women Across New England</h2>
             <p className="text-gray-700 leading-relaxed mb-4">
               SWCA supports senior women across four states — <strong>Massachusetts, New Hampshire,
@@ -82,7 +82,7 @@ export default function AboutPage() {
           />
           <div className="absolute inset-0 bg-teal-900/70" />
           <div className="relative z-10 p-10 text-white max-w-2xl">
-            <span className="text-teal-300 font-semibold text-sm uppercase tracking-wider">Inspired By</span>
+            <span className="text-teal-300 font-semibold text-base uppercase tracking-wider">Inspired By</span>
             <h2 className="text-2xl font-bold mt-2 mb-3">Super Agers</h2>
             <p className="text-teal-100 leading-relaxed">
               We are inspired by <strong className="text-white">&ldquo;super agers&rdquo;</strong> — people who
@@ -96,7 +96,7 @@ export default function AboutPage() {
         {/* ── What We Do ─────────────────────────────────────────────────── */}
         <div className="mb-16">
           <div className="text-center mb-10">
-            <span className="text-teal-600 font-semibold text-sm uppercase tracking-wider">Programs</span>
+            <span className="text-teal-600 font-semibold text-base uppercase tracking-wider">Programs</span>
             <h2 className="text-2xl font-bold text-gray-900 mt-2">What We Do</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -122,19 +122,19 @@ export default function AboutPage() {
                 image: "/imgs/Advisors.png",
               },
             ].map((item) => (
-              <div key={item.title} className="flex gap-4 border rounded-xl p-5 hover:border-teal-200 transition-colors">
-                <div className="relative w-20 h-20 rounded-xl overflow-hidden shrink-0">
+              <div key={item.title} className="flex gap-5 border rounded-xl p-5 hover:border-teal-200 transition-colors">
+                <div className="relative w-24 h-24 rounded-xl overflow-hidden shrink-0">
                   <Image
                     src={item.image}
                     alt={item.title}
                     fill
                     className="object-cover object-center"
-                    sizes="80px"
+                    sizes="96px"
                   />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">{item.title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+                  <h3 className="font-semibold text-gray-900 text-lg mb-2">{item.title}</h3>
+                  <p className="text-gray-600 text-base leading-relaxed">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -144,7 +144,7 @@ export default function AboutPage() {
         {/* ── Advisors ───────────────────────────────────────────────────── */}
         <div className="mb-16">
           <div className="text-center mb-8">
-            <span className="text-teal-600 font-semibold text-sm uppercase tracking-wider">Leadership</span>
+            <span className="text-teal-600 font-semibold text-base uppercase tracking-wider">Leadership</span>
             <h2 className="text-2xl font-bold text-gray-900 mt-2">Our Advisors</h2>
           </div>
           <div className="relative h-64 rounded-2xl overflow-hidden shadow-md">

@@ -36,34 +36,34 @@ export default async function EventsPage() {
         <div className="space-y-10">
           {byState.map(({ value, label, sessions: stateSessions }) => (
             <div key={value}>
-              <h2 className="text-lg font-semibold text-teal-700 mb-4 flex items-center gap-2">
-                <span className="bg-teal-100 text-teal-800 text-xs font-bold px-2 py-1 rounded-full">{value}</span>
+              <h2 className="text-xl font-semibold text-teal-700 mb-4 flex items-center gap-2">
+                <span className="bg-teal-100 text-teal-800 text-sm font-bold px-3 py-1 rounded-full">{value}</span>
                 {label}
               </h2>
 
               {stateSessions.length === 0 ? (
-                <p className="text-sm text-gray-400 pl-2">No sessions scheduled yet.</p>
+                <p className="text-base text-gray-400 pl-2">No sessions scheduled yet.</p>
               ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {stateSessions.map((s) => (
                     <div
                       key={s.id}
-                      className="bg-white border rounded-2xl p-5 flex flex-col gap-3"
+                      className="bg-white border rounded-2xl p-6 flex flex-col gap-3"
                     >
                       <div>
-                        <p className="font-semibold text-gray-900">{s.class.name}</p>
-                        <p className="text-xs text-gray-400 italic mt-0.5">{s.class.origin}</p>
+                        <p className="font-semibold text-gray-900 text-lg">{s.class.name}</p>
+                        <p className="text-sm text-gray-400 italic mt-1">{s.class.origin}</p>
                       </div>
-                      <div className="text-sm text-gray-600 space-y-1">
+                      <div className="text-base text-gray-600 space-y-2">
                         <p>📅 {s.dayOfWeek}</p>
                         <p>🕐 {s.time}</p>
                         <p>📍 {s.location}</p>
                       </div>
-                      <div className="flex flex-wrap gap-1 mt-auto">
+                      <div className="flex flex-wrap gap-2 mt-auto">
                         {s.class.benefits.slice(0, 3).map((b) => (
                           <span
                             key={b}
-                            className="text-xs bg-teal-50 text-teal-700 px-2 py-0.5 rounded-full"
+                            className="text-sm bg-teal-50 text-teal-700 px-3 py-1 rounded-full"
                           >
                             {b}
                           </span>

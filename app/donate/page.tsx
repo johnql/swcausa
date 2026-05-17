@@ -46,9 +46,9 @@ export default function DonatePage() {
               { amount: "$25", impact: "Sponsors a member's monthly class access" },
               { amount: "$50", impact: "Funds a community outreach visit" },
             ].map(({ amount, impact }) => (
-              <div key={amount} className="bg-white border rounded-xl p-4 text-center shadow-sm">
+              <div key={amount} className="bg-white border rounded-xl p-5 text-center shadow-sm">
                 <p className="text-2xl font-bold text-teal-600">{amount}</p>
-                <p className="text-xs text-gray-500 mt-1 leading-relaxed">{impact}</p>
+                <p className="text-sm text-gray-500 mt-2 leading-relaxed">{impact}</p>
               </div>
             ))}
           </div>
@@ -63,7 +63,7 @@ export default function DonatePage() {
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-teal-900/50 to-transparent" />
-            <p className="absolute bottom-4 left-4 text-white font-semibold text-sm">
+            <p className="absolute bottom-4 left-4 text-white font-semibold text-base">
               A Community of Care, Wellness &amp; Friendship
             </p>
           </div>

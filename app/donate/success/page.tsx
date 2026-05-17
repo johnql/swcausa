@@ -14,7 +14,7 @@ export default function DonateSuccessPage() {
         <p className="text-gray-600 mb-2">
           Your generous donation supports wellness programs and community care for senior women across New England.
         </p>
-        <p className="text-sm text-gray-400 mb-6">
+        <p className="text-base text-gray-400 mb-6">
           A receipt has been sent to your email address.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">

@@ -56,13 +56,13 @@ export default async function StorePage() {
                   </div>
                 )}
                 <div className="p-5 flex flex-col flex-1">
-                  <h2 className="font-semibold text-gray-900">{p.productName}</h2>
+                  <h2 className="font-semibold text-gray-900 text-lg">{p.productName}</h2>
                   {p.description && (
-                    <p className="mt-1 text-sm text-gray-500 flex-1 leading-relaxed">{p.description}</p>
+                    <p className="mt-2 text-base text-gray-500 flex-1 leading-relaxed">{p.description}</p>
                   )}
                   <div className="mt-4 flex items-center justify-between mb-3">
                     <span className="text-2xl font-bold text-gray-900">${p.price.toFixed(2)}</span>
-                    <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full font-medium">In Stock</span>
+                    <span className="text-sm bg-green-100 text-green-700 px-3 py-1 rounded-full font-medium">In Stock</span>
                   </div>
                   <BuyButton productId={p.id} />
                 </div>

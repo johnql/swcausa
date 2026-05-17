@@ -72,7 +72,7 @@ export default function ContactPage() {
                   />
                 </div>
                 <div>
-                  <p className="text-xs text-gray-400 uppercase tracking-wider">{label}</p>
+                  <p className="text-sm text-gray-400 uppercase tracking-wider">{label}</p>
                   {href ? (
                     <a href={href} className="font-medium text-gray-900 hover:text-teal-600 transition-colors">
                       {value}
@@ -99,7 +99,7 @@ export default function ContactPage() {
 
         {/* Right — form */}
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8">
-          <h2 className="text-lg font-semibold text-gray-900 mb-5">Send a Message</h2>
+          <h2 className="text-xl font-semibold text-gray-900 mb-5">Send a Message</h2>
           <ContactForm />
         </div>
 

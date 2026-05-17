@@ -16,7 +16,7 @@ export default function LoginPage() {
           <p className="text-gray-600">Sign in to your SWCA member account.</p>
         </div>
         <LoginForm />
-        <p className="text-center text-sm text-gray-500 mt-6">
+        <p className="text-center text-base text-gray-500 mt-6">
           Not a member yet?{" "}
           <Link href="/join" className="text-teal-600 hover:underline font-medium">
             Join SWCA

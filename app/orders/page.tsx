@@ -43,10 +43,10 @@ export default async function OrdersPage() {
       ) : (
         <div className="bg-white border rounded-2xl overflow-hidden">
           <div className="p-4 border-b">
-            <p className="text-sm text-gray-500">{orders.length} order{orders.length !== 1 ? "s" : ""}</p>
+            <p className="text-base text-gray-500">{orders.length} order{orders.length !== 1 ? "s" : ""}</p>
           </div>
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full text-base">
               <thead className="bg-gray-50 text-left">
                 <tr>
                   {["Product", "Qty", "Amount", "Status", "Date"].map((h) => (

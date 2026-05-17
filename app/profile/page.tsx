@@ -48,8 +48,8 @@ export default async function ProfilePage() {
 
         {/* Personal Info */}
         <section className="bg-white border rounded-2xl p-6 mb-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Personal Information</h2>
-          <dl className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Personal Information</h2>
+          <dl className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-base">
             <div><dt className="text-gray-500">Full Name</dt><dd className="font-medium mt-0.5">{member.firstName} {member.lastName}</dd></div>
             <div><dt className="text-gray-500">Phone</dt><dd className="font-medium mt-0.5">{member.primaryPhone}</dd></div>
             <div><dt className="text-gray-500">Gender</dt><dd className="font-medium mt-0.5">{member.gender}</dd></div>
@@ -60,8 +60,8 @@ export default async function ProfilePage() {
 
         {/* Emergency Contact */}
         <section className="bg-white border rounded-2xl p-6 mb-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Emergency Contact</h2>
-          <dl className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Emergency Contact</h2>
+          <dl className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-base">
             <div><dt className="text-gray-500">Name</dt><dd className="font-medium mt-0.5">{member.emergencyContactName}</dd></div>
             <div><dt className="text-gray-500">Phone</dt><dd className="font-medium mt-0.5">{member.emergencyContactPhone}</dd></div>
             <div><dt className="text-gray-500">Relationship</dt><dd className="font-medium mt-0.5">{member.emergencyContactRelationship}</dd></div>
@@ -71,8 +71,8 @@ export default async function ProfilePage() {
         {/* Insurance */}
         {(member.insuranceProvider || member.insurancePolicyNumber) && (
           <section className="bg-white border rounded-2xl p-6 mb-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Insurance (Emergency Reference)</h2>
-            <dl className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">Insurance (Emergency Reference)</h2>
+            <dl className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-base">
               {member.insuranceProvider && (
                 <div><dt className="text-gray-500">Provider</dt><dd className="font-medium mt-0.5">{member.insuranceProvider}</dd></div>
               )}
@@ -86,18 +86,18 @@ export default async function ProfilePage() {
         {/* Upcoming RSVPs */}
         <section className="bg-white border rounded-2xl p-6">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-gray-900">My Class RSVPs</h2>
-            <Link href="/classes" className="text-sm text-teal-600 hover:underline">Browse classes →</Link>
+            <h2 className="text-xl font-semibold text-gray-900">My Class RSVPs</h2>
+            <Link href="/classes" className="text-base text-teal-600 hover:underline">Browse classes →</Link>
           </div>
           {member.rsvps.length === 0 ? (
-            <p className="text-gray-500 text-sm">
+            <p className="text-gray-500 text-base">
               You haven&apos;t registered for any classes yet.{" "}
               <Link href="/classes" className="text-teal-600 hover:underline">Explore wellness classes</Link>
             </p>
           ) : (
             <ul className="divide-y">
               {member.rsvps.map((rsvp) => (
-                <li key={rsvp.id} className="py-3 flex items-center justify-between text-sm">
+                <li key={rsvp.id} className="py-4 flex items-center justify-between text-base">
                   <div>
                     <p className="font-medium">{rsvp.session.class.name}</p>
                     <p className="text-gray-500">{rsvp.session.dayOfWeek} · {rsvp.session.time} · {rsvp.session.location}</p>
