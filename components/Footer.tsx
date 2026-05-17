@@ -6,10 +6,10 @@ export default function Footer() {
     <footer className="bg-gray-900 text-gray-300 mt-16">
       {/* Newsletter strip */}
       <div className="border-b border-gray-700">
-        <div className="mx-auto max-w-7xl px-4 py-8 flex flex-col md:flex-row items-start md:items-center gap-4 justify-between">
+        <div className="mx-auto max-w-7xl px-4 py-10 flex flex-col md:flex-row items-start md:items-center gap-4 justify-between">
           <div>
-            <p className="font-semibold text-white">Stay Connected</p>
-            <p className="text-sm text-gray-400">Get SWCA news, class updates, and community events in your inbox.</p>
+            <p className="font-semibold text-white text-lg">Stay Connected</p>
+            <p className="text-base text-gray-400">Get SWCA news, class updates, and community events in your inbox.</p>
           </div>
           <div className="w-full md:w-96">
             <NewsletterForm />
@@ -18,15 +18,15 @@ export default function Footer() {
       </div>
 
       {/* Main footer */}
-      <div className="mx-auto max-w-7xl px-4 py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-sm">
+      <div className="mx-auto max-w-7xl px-4 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
         {/* Brand */}
         <div className="lg:col-span-1">
-          <p className="font-bold text-white text-lg mb-2">SWCA</p>
-          <p className="text-gray-400 leading-relaxed">
+          <p className="font-bold text-white text-xl mb-3">SWCA</p>
+          <p className="text-gray-400 leading-relaxed text-base">
             Senior Women&apos;s Christian Association<br />
             A Community of Care, Wellness, and Friendship
           </p>
-          <p className="mt-2 text-gray-500 text-xs">Serving MA · NH · RI · VT</p>
+          <p className="mt-3 text-gray-500 text-sm">Serving MA · NH · RI · VT</p>
 
           {/* Social links */}
           <div className="flex gap-3 mt-4">
@@ -57,8 +57,8 @@ export default function Footer() {
 
         {/* Navigation */}
         <div>
-          <p className="font-medium text-white mb-3">Programs</p>
-          <ul className="space-y-2 text-gray-400">
+          <p className="font-semibold text-white text-base mb-4">Programs</p>
+          <ul className="space-y-3 text-gray-400 text-base">
             <li><Link href="/classes" className="hover:text-white transition-colors">Wellness Classes</Link></li>
             <li><Link href="/events" className="hover:text-white transition-colors">Class Schedule</Link></li>
             <li><Link href="/join" className="hover:text-white transition-colors">Become a Member</Link></li>
@@ -66,8 +66,8 @@ export default function Footer() {
         </div>
 
         <div>
-          <p className="font-medium text-white mb-3">Organization</p>
-          <ul className="space-y-2 text-gray-400">
+          <p className="font-semibold text-white text-base mb-4">Organization</p>
+          <ul className="space-y-3 text-gray-400 text-base">
             <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
             <li><Link href="/store" className="hover:text-white transition-colors">Store</Link></li>
             <li><Link href="/donate" className="hover:text-white transition-colors">Donate</Link></li>
@@ -76,15 +76,15 @@ export default function Footer() {
         </div>
 
         <div>
-          <p className="font-medium text-white mb-3">Legal</p>
-          <ul className="space-y-2 text-gray-400">
+          <p className="font-semibold text-white text-base mb-4">Legal</p>
+          <ul className="space-y-3 text-gray-400 text-base">
             <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
             <li><Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
           </ul>
         </div>
       </div>
 
-      <div className="border-t border-gray-800 text-center text-xs text-gray-500 py-4">
+      <div className="border-t border-gray-800 text-center text-sm text-gray-500 py-5">
         © {new Date().getFullYear()} Senior Women&apos;s Christian Association. All rights reserved.
       </div>
     </footer>

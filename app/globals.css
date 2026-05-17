@@ -123,8 +123,10 @@
   }
   body {
     @apply bg-background text-foreground;
+    line-height: 1.75;
   }
   html {
     @apply font-sans;
+    font-size: 1.125rem; /* 18px base — larger text for seniors */
   }
 }
