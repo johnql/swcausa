@@ -21,18 +21,18 @@ export default function WellnessClassCard({ cls }: { cls: WellnessClass }) {
           </div>
         )}
         {/* Origin badge overlay */}
-        <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/50 to-transparent px-4 py-3">
-          <p className="text-xs text-white/80 italic">{cls.origin}</p>
+        <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent px-4 py-4">
+          <p className="text-base text-white/90 italic">{cls.origin}</p>
         </div>
       </div>
 
       {/* Content */}
-      <div className="p-5 flex flex-col flex-1 gap-3">
-        <h3 className="text-lg font-semibold text-gray-900">{cls.name}</h3>
-        <p className="text-sm text-gray-600 leading-relaxed flex-1">{cls.description}</p>
-        <div className="flex flex-wrap gap-1.5 pt-1">
+      <div className="p-6 flex flex-col flex-1 gap-4">
+        <h3 className="text-xl font-semibold text-gray-900">{cls.name}</h3>
+        <p className="text-base text-gray-600 leading-relaxed flex-1">{cls.description}</p>
+        <div className="flex flex-wrap gap-2 pt-1">
           {cls.benefits.map((b) => (
-            <Badge key={b} variant="secondary" className="text-xs bg-teal-50 text-teal-700 border-0">
+            <Badge key={b} variant="secondary" className="text-sm bg-teal-50 text-teal-700 border-0 px-3 py-1 h-auto">
               {b}
             </Badge>
           ))}
