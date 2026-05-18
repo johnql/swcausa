@@ -6,8 +6,25 @@ import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "Class Schedule | SWCA",
-  description: "Browse the weekly wellness class schedule across Massachusetts, New Hampshire, Rhode Island, and Vermont.",
+  title: "Wellness Class Schedule | Senior Fitness Classes Near You | SWCA",
+  description:
+    "Find SWCA weekly wellness class schedules for senior women across Massachusetts, New Hampshire, Rhode Island, and Vermont. Browse Tai Chi, Yoga, Fitness, and more — then RSVP as a member.",
+  keywords: [
+    "senior wellness class schedule Massachusetts",
+    "tai chi class schedule New England",
+    "yoga classes for seniors near me",
+    "senior fitness class locations New England",
+    "RSVP wellness classes seniors",
+    "weekly senior fitness classes",
+    "senior women class schedule",
+  ],
+  openGraph: {
+    title: "Class Schedule — Senior Wellness Classes Near You | SWCA",
+    description:
+      "Weekly Tai Chi, Yoga, Fitness, and more for senior women in MA, NH, RI, and VT. Browse times and locations.",
+    url: "https://swcausa.org/events",
+  },
+  alternates: { canonical: "https://swcausa.org/events" },
 };
 
 export default async function EventsPage() {

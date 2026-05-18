@@ -5,8 +5,26 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "About Us | SWCA",
-  description: "Learn about the Senior Women's Christian Association — our mission, history, and the community we serve.",
+  title: "About SWCA | Senior Women's Christian Association New England",
+  description:
+    "Learn about SWCA — the Senior Women's Christian Association empowering senior women across Massachusetts, New Hampshire, Rhode Island, and Vermont through wellness programs, community events, and advocacy for health and independence.",
+  keywords: [
+    "senior women's organization New England",
+    "SWCA mission",
+    "Christian senior women association",
+    "senior women advocacy Massachusetts",
+    "senior wellness organization New England",
+    "senior women empowerment",
+    "super agers senior women",
+  ],
+  openGraph: {
+    title: "About SWCA — Our Mission & Community for Senior Women",
+    description:
+      "SWCA empowers senior women through wellness programs, community connection, and advocacy across MA, NH, RI, and VT.",
+    url: "https://swcausa.org/about",
+    images: [{ url: "/imgs/aboutus.jpg", width: 1200, height: 630, alt: "SWCA Community" }],
+  },
+  alternates: { canonical: "https://swcausa.org/about" },
 };
 
 export default function AboutPage() {

@@ -3,7 +3,27 @@ import Image from "next/image";
 import { db } from "@/lib/db";
 import BuyButton from "@/components/BuyButton";
 
-export const metadata: Metadata = { title: "Store | SWCA" };
+export const metadata: Metadata = {
+  title: "SWCA Store | Merchandise & Support for Senior Women's Programs",
+  description:
+    "Shop SWCA merchandise and support senior women's wellness programs across New England. Every purchase helps fund free classes and community outreach in Massachusetts, New Hampshire, Rhode Island, and Vermont.",
+  keywords: [
+    "SWCA store",
+    "senior women association merchandise",
+    "buy SWCA shirt",
+    "support senior women New England",
+    "senior wellness merchandise",
+    "SWCA products",
+  ],
+  openGraph: {
+    title: "SWCA Store — Shop & Support Senior Women's Wellness",
+    description:
+      "Merchandise and products that support free wellness programs for senior women in MA, NH, RI, and VT.",
+    url: "https://swcausa.org/store",
+    images: [{ url: "/imgs/TShirts.png", width: 1200, height: 630, alt: "SWCA Store" }],
+  },
+  alternates: { canonical: "https://swcausa.org/store" },
+};
 
 export default async function StorePage() {
   const products = await db.product.findMany({ where: { inStock: true } });

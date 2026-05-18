@@ -3,8 +3,25 @@ import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact Us | SWCA",
-  description: "Get in touch with the Senior Women's Christian Association.",
+  title: "Contact SWCA | Reach Our Senior Women's Wellness Team",
+  description:
+    "Contact the Senior Women's Christian Association with questions about membership, wellness classes, or programs in Massachusetts, New Hampshire, Rhode Island, and Vermont. We'd love to hear from you.",
+  keywords: [
+    "contact senior women's association",
+    "SWCA contact",
+    "senior women program inquiry",
+    "senior wellness Massachusetts contact",
+    "senior women community New England contact",
+    "SWCA email phone",
+    "senior women organization contact",
+  ],
+  openGraph: {
+    title: "Contact SWCA — Reach Our Senior Wellness Team",
+    description:
+      "Questions about SWCA membership or classes? Email or call us — we serve MA, NH, RI, and VT.",
+    url: "https://swcausa.org/contact",
+  },
+  alternates: { canonical: "https://swcausa.org/contact" },
 };
 
 export default function ContactPage() {

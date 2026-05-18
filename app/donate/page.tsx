@@ -3,8 +3,27 @@ import Image from "next/image";
 import DonationForm from "@/components/DonationForm";
 
 export const metadata: Metadata = {
-  title: "Donate | SWCA",
-  description: "Support the Senior Women's Christian Association with a one-time donation.",
+  title: "Donate to SWCA | Support Senior Women's Wellness in New England",
+  description:
+    "Your donation supports free wellness classes, community outreach, and programs for senior women across Massachusetts, New Hampshire, Rhode Island, and Vermont. Help SWCA make a difference.",
+  keywords: [
+    "donate senior women's organization",
+    "support senior wellness New England",
+    "SWCA donation",
+    "senior women charity Massachusetts",
+    "nonprofit senior women New England",
+    "donate senior community programs",
+    "support elderly women wellness",
+    "senior women nonprofit donation",
+  ],
+  openGraph: {
+    title: "Donate to SWCA — Support Senior Women Across New England",
+    description:
+      "Your gift funds free wellness classes and community programs for senior women in MA, NH, RI, and VT.",
+    url: "https://swcausa.org/donate",
+    images: [{ url: "/imgs/handshaking.jpg", width: 1200, height: 630, alt: "Support SWCA" }],
+  },
+  alternates: { canonical: "https://swcausa.org/donate" },
 };
 
 export default function DonatePage() {

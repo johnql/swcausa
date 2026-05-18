@@ -3,8 +3,28 @@ import Image from "next/image";
 import MembershipForm from "@/components/MembershipForm";
 
 export const metadata: Metadata = {
-  title: "Join Us | SWCA",
-  description: "Become a member of the Senior Women's Christian Association.",
+  title: "Join SWCA | Free Membership for Senior Women in New England",
+  description:
+    "Sign up for free SWCA membership and get connected with wellness classes, community programs, and a local convener in Massachusetts, New Hampshire, Rhode Island, or Vermont. Membership is always free.",
+  keywords: [
+    "join senior women's association",
+    "free senior membership New England",
+    "SWCA membership",
+    "senior women program Massachusetts",
+    "senior community membership free",
+    "wellness classes senior women sign up",
+    "senior women registration New Hampshire",
+    "senior women Rhode Island program",
+    "senior women Vermont wellness",
+  ],
+  openGraph: {
+    title: "Join SWCA — Free Membership for Senior Women",
+    description:
+      "Sign up free and get connected with wellness classes and a local convener in MA, NH, RI, or VT.",
+    url: "https://swcausa.org/join",
+    images: [{ url: "/imgs/JoinUs.png", width: 1200, height: 630, alt: "Join SWCA" }],
+  },
+  alternates: { canonical: "https://swcausa.org/join" },
 };
 
 export default function JoinPage() {

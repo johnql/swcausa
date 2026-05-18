@@ -1,9 +1,36 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import WellnessClassCard from "@/components/WellnessClassCard";
 import { wellnessClasses } from "@/data/classes";
+
+export const metadata: Metadata = {
+  title: "SWCA — Free Wellness Classes & Community for Senior Women in New England",
+  description:
+    "SWCA offers free Tai Chi, Yoga, Fitness, Table Tennis, Group Dance, and Singing classes for senior women across Massachusetts, New Hampshire, Rhode Island, and Vermont. Join a caring community that supports your health, independence, and friendship.",
+  keywords: [
+    "senior women wellness Massachusetts",
+    "free wellness classes senior women",
+    "tai chi seniors Massachusetts",
+    "yoga seniors New England",
+    "senior women community New England",
+    "SWCA senior women",
+    "senior fitness classes Massachusetts",
+    "senior women program New Hampshire",
+    "senior women Rhode Island",
+    "senior women Vermont",
+  ],
+  openGraph: {
+    title: "SWCA — Free Wellness Classes & Community for Senior Women",
+    description:
+      "Free Tai Chi, Yoga, Fitness, and community programs for senior women in MA, NH, RI, and VT. Membership is always free.",
+    url: "https://swcausa.org",
+    images: [{ url: "/imgs/SWCATitleNew.jpg", width: 1200, height: 630, alt: "SWCA Senior Women's Community" }],
+  },
+  alternates: { canonical: "https://swcausa.org" },
+};
 
 const programs = [
   {
