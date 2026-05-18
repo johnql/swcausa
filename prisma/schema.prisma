@@ -115,3 +115,23 @@ model Order {
 
   @@map("orders")
 }
+
+model NewsletterSubscriber {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  subscribedAt DateTime @default(now())
+  active       Boolean  @default(true)
+
+  @@map("newsletter_subscribers")
+}
+
+model ContactSubmission {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  message     String
+  submittedAt DateTime @default(now())
+  read        Boolean  @default(false)
+
+  @@map("contact_submissions")
+}

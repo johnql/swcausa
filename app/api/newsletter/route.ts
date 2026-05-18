@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+import { db } from "@/lib/db";
 import { resend } from "@/lib/resend";
 
 const schema = z.object({
@@ -14,6 +15,13 @@ export async function POST(request: NextRequest) {
   }
 
   const { email } = result.data;
+
+  // Save or reactivate subscriber in DB
+  await db.newsletterSubscriber.upsert({
+    where: { email },
+    update: { active: true },
+    create: { email },
+  });
 
   try {
     await Promise.all([
@@ -48,7 +56,7 @@ export async function POST(request: NextRequest) {
       }),
     ]);
   } catch {
-    return NextResponse.json({ error: "Failed to send confirmation email. Please try again." }, { status: 500 });
+    // Email failure is non-fatal — subscriber is already saved
   }
 
   return NextResponse.json({ success: true });
